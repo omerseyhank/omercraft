@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ask Omer to Build</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">⛏️ (Please Pay before)OmerCraft</div>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="cart.html">Cart</a>
+    <a href="request.html">Ask to Build</a>
+  </div>
+</nav>
+
+  <div class="container">
+
+    <h1>🧠 Ask Omer to Build</h1>
+    <p>You paid. Now tell me exactly what you want.</p>
+
+    <form id="orderForm">
+
+      <input
+        type="text"
+        id="edition"
+        placeholder="Edition (Bedrock / Java)"
+        required
+      >
+
+      <input
+        type="text"
+        id="type"
+        placeholder="World Type (Parkour, City, Adventure)"
+        required
+      >
+
+      <input
+        type="text"
+        id="name"
+        placeholder="World Name"
+        required
+      >
+
+      <textarea
+        id="desc"
+        placeholder="Describe your world idea here"
+        required
+      ></textarea>
+
+      <button type="submit">
+        SEND MY BUILD IDEA
+      </button>
+
+    </form>
+
+    <p class="note">
+      This will open WhatsApp. If WhatsApp is not available, email will open.
+    </p>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

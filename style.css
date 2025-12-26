@@ -1,0 +1,74 @@
+body {
+  background: #3a7d44;
+  font-family: Arial, sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: #2e2e2e;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+input, textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+.note {
+  font-size: 12px;
+  margin-top: 10px;
+  color: #cccccc;
+}
+.cart-item {
+  background: #1f1f1f;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.back-link {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #9ccc65;
+  text-decoration: none;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI World Idea Helper</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-logo">⛏️ OmerCraft</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="cart.html">Cart</a>
+    <a href="request.html">Ask to Build</a>
+    <a href="ai.html">AI Helper</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>🤖 AI World Idea Helper</h1>
+  <p>Type a rough idea. AI will clean it up.</p>
+
+  <textarea id="rawIdea" placeholder="e.g. scary lava parkour with checkpoints"></textarea>
+
+  <button onclick="generateIdea()">Generate Idea</button>
+
+  <textarea id="result" placeholder="AI result will appear here"></textarea>
+</div>
+
+<script>
+async function generateIdea() {
+  const idea = document.getElementById("rawIdea").value;
+  const res = await fetch("/ai", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ idea })
+  });
+  const data = await res.json();
+  document.getElementById("result").value = data.result;
+}
+</script>
+
+</body>
+</html>
