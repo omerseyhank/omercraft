@@ -1,61 +1,35 @@
-import "dotenv/config";
-import express from "express";
-import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
+document.getElementById("orderForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+  const edition = document.getElementById("edition").value;
+  const type = document.getElementById("type").value;
+  const name = document.getElementById("name").value;
+  const desc = document.getElementById("desc").value;
 
-// 🔹 get current folder
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+  const message =
+    `Hi Omer 👋\n\n` +
+    `I want a custom Minecraft world.\n\n` +
+    `Edition: ${edition}\n` +
+    `World Type: ${type}\n` +
+    `World Name: ${name}\n` +
+    `Description:\n${desc}`;
 
-// 🔹 serve static files
-app.use(express.static(__dirname));
+  const encodedMessage = encodeURIComponent(message);
 
-// 🔹 explicit routes (IMPORTANT)
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  // 🔴 IMPORTANT: WhatsApp Business number WITH country code (Qatar)
+  const phoneNumber = "97477195239";
+
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  const emailURL = `mailto:omerkuzeyseyhan5@gmail.com?subject=Custom Minecraft World&body=${encodedMessage}`;
+
+  // Try WhatsApp first
+  const win = window.open(whatsappURL, "_blank");
+
+  // Fallback to email if blocked
+  setTimeout(() => {
+    if (!win || win.closed) {
+      window.location.href = emailURL;
+    }
+  }, 800);
 });
 
-app.get("/ai.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "ai.html"));
-});
-
-app.get("/cart.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "cart.html"));
-});
-
-app.get("/request.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "request.html"));
-});
-
-// 🔹 AI endpoint
-app.post("/ai", async (req, res) => {
-  const { idea } = req.body;
-
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: "gpt-4.1-mini",
-      messages: [
-        { role: "system", content: "Rewrite Minecraft world ideas clearly and professionally." },
-        { role: "user", content: idea }
-      ]
-    })
-  });
-
-  const data = await response.json();
-  res.json({ result: data.choices[0].message.content });
-});
-
-// 🔹 start server
-app.listen(3000, () => {
-  console.log("AI server running on http://localhost:3000");
-});
